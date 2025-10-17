@@ -133,23 +133,22 @@ input[type="text"] {
 /* Slot Machine Reels */
 .slot-reels {
     position: absolute;
-    top: 50%;
+    top: 53%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
     z-index: 10;
 }
 
 .reel {
     position: relative;
-    width: 60px;
-    height: 80px;
-    border: 2px solid #000;
-    background: #fff;
+    width: 55px;
+    height: 75px;
+    background: transparent;
+    border: none;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .reel-strip {
@@ -163,13 +162,14 @@ input[type="text"] {
 }
 
 .reel-number {
-    height: 80px;
+    height: 75px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 48px;
+    font-size: 56px;
     font-weight: bold;
-    color: #000;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 /* Dropdowns */
@@ -246,13 +246,13 @@ button:disabled {
     }
 
     .reel {
-        width: 50px;
-        height: 70px;
+        width: 45px;
+        height: 65px;
     }
 
     .reel-number {
-        height: 70px;
-        font-size: 40px;
+        height: 65px;
+        font-size: 48px;
     }
 }
 
@@ -275,13 +275,13 @@ button:disabled {
     }
 
     .reel {
-        width: 40px;
-        height: 60px;
+        width: 35px;
+        height: 55px;
     }
 
     .reel-number {
-        height: 60px;
-        font-size: 32px;
+        height: 55px;
+        font-size: 40px;
     }
 
     h1 {
