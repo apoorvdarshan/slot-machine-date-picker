@@ -3,7 +3,7 @@
 A retro 90s-style registration form featuring a unique slot machine interface for selecting birth dates. Built for Bad UI Battle with a nostalgic HTML aesthetic.
 
 <div align="center">
-  <img src="assets/thumbnail.png" alt="Slot Machine Date Picker Screenshot" style="max-height: 400px;">
+  <img src="assets/thumbnail.png" alt="Slot Machine Date Picker Screenshot" style="width: 500px;">
 </div>
 
 ## 🎰 Live Demo
