@@ -151,6 +151,14 @@ input[type="text"] {
     overflow: hidden;
 }
 
+#dayTens {
+    transform: translate(35px, -35px);
+}
+
+#dayOnes {
+    transform: translate(6px, -35px);
+}
+
 .reel-strip {
     position: absolute;
     top: 0;
