@@ -94,34 +94,62 @@ function initializeSlotMachine() {
 function spinReel(reelStrip, finalValue, duration) {
     return new Promise((resolve) => {
         const startTime = Date.now();
-        const numbers = reelStrip.querySelectorAll('.reel-number');
-        const numberHeight = 75; // Updated to match new reel height
-        const totalNumbers = numbers.length;
+        const numberHeight = 75;
+        const numbersPerCycle = 10; // 0-9
+        const totalStripHeight = numberHeight * numbersPerCycle;
 
-        // Calculate spins (multiple full rotations + final position)
-        const fullRotations = 8;
-        const totalDistance = (fullRotations * 10 + finalValue) * numberHeight;
+        // Scrolling speed in pixels per second
+        const scrollSpeed = 800; // Adjust for faster/slower scroll
+
+        // Easing duration at the end (in ms)
+        const easeDuration = 500;
+
+        let currentPosition = 0;
+        let lastTime = startTime;
 
         function animate() {
-            const elapsed = Date.now() - startTime;
-            const progress = Math.min(elapsed / duration, 1);
+            const now = Date.now();
+            const elapsed = now - startTime;
+            const deltaTime = (now - lastTime) / 1000; // Convert to seconds
+            lastTime = now;
 
-            // Easing function (ease-out-cubic)
-            const eased = 1 - Math.pow(1 - progress, 3);
+            if (elapsed < duration - easeDuration) {
+                // Phase 1: Constant speed scrolling
+                currentPosition += scrollSpeed * deltaTime;
 
-            const currentDistance = totalDistance * eased;
-            reelStrip.style.transform = `translateY(-${currentDistance}px)`;
+                // Keep position within bounds using modulo for infinite scroll
+                currentPosition = currentPosition % totalStripHeight;
 
-            if (progress < 1) {
+                reelStrip.style.transform = `translateY(-${currentPosition}px)`;
+                requestAnimationFrame(animate);
+            } else if (elapsed < duration) {
+                // Phase 2: Ease to final position
+                const easeProgress = (elapsed - (duration - easeDuration)) / easeDuration;
+                const eased = 1 - Math.pow(1 - easeProgress, 3); // ease-out-cubic
+
+                // Calculate target position (in first cycle)
+                const targetPosition = finalValue * numberHeight;
+
+                // Find closest position to current scroll position
+                const currentCycle = Math.floor(currentPosition / totalStripHeight);
+                const positionInCycle = currentPosition % totalStripHeight;
+
+                // Calculate the nearest occurrence of target position
+                let nearestTarget = currentCycle * totalStripHeight + targetPosition;
+                if (targetPosition < positionInCycle) {
+                    nearestTarget += totalStripHeight;
+                }
+
+                // Interpolate to target
+                const newPosition = currentPosition + (nearestTarget - currentPosition) * eased;
+                reelStrip.style.transform = `translateY(-${newPosition}px)`;
+
                 requestAnimationFrame(animate);
             } else {
-                // Reset to equivalent position in first set
-                reelStrip.style.transition = 'none';
-                reelStrip.style.transform = `translateY(-${finalValue * numberHeight}px)`;
-                setTimeout(() => {
-                    reelStrip.style.transition = 'transform 0.1s linear';
-                    resolve();
-                }, 50);
+                // Final: Set exact position
+                const finalPosition = finalValue * numberHeight;
+                reelStrip.style.transform = `translateY(-${finalPosition}px)`;
+                resolve();
             }
         }
 
