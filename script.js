@@ -87,7 +87,7 @@ function spinReel(reelStrip, finalValue, duration) {
     return new Promise((resolve) => {
         const startTime = Date.now();
         const numbers = reelStrip.querySelectorAll('.reel-number');
-        const numberHeight = 60;
+        const numberHeight = 80; // Updated to match new reel height
         const totalNumbers = numbers.length;
 
         // Calculate spins (multiple full rotations + final position)

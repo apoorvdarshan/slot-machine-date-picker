@@ -110,20 +110,46 @@ input[type="text"] {
     font-size: 14px;
 }
 
+/* Slot Machine with Background */
+.slot-machine-group {
+    flex: 1;
+    min-width: 300px;
+}
+
+.slot-machine-wrapper {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.slot-machine-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
 /* Slot Machine Reels */
 .slot-reels {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
-    gap: 5px;
+    gap: 10px;
     justify-content: center;
+    z-index: 10;
 }
 
 .reel {
     position: relative;
-    width: 50px;
-    height: 60px;
+    width: 60px;
+    height: 80px;
     border: 2px solid #000;
     background: #fff;
     overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .reel-strip {
@@ -137,11 +163,11 @@ input[type="text"] {
 }
 
 .reel-number {
-    height: 60px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
+    font-size: 48px;
     font-weight: bold;
     color: #000;
 }
@@ -214,14 +240,19 @@ button:disabled {
         align-items: center;
     }
 
+    .slot-machine-wrapper {
+        width: 250px;
+        height: 350px;
+    }
+
     .reel {
-        width: 45px;
-        height: 55px;
+        width: 50px;
+        height: 70px;
     }
 
     .reel-number {
-        height: 55px;
-        font-size: 28px;
+        height: 70px;
+        font-size: 40px;
     }
 }
 
@@ -238,14 +269,19 @@ button:disabled {
         font-size: 20px;
     }
 
+    .slot-machine-wrapper {
+        width: 200px;
+        height: 280px;
+    }
+
     .reel {
         width: 40px;
-        height: 50px;
+        height: 60px;
     }
 
     .reel-number {
-        height: 50px;
-        font-size: 24px;
+        height: 60px;
+        font-size: 32px;
     }
 
     h1 {
