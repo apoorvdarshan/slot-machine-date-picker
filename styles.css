@@ -137,7 +137,7 @@ input[type="text"] {
     left: 60%;
     transform: translate(-50%, -50%);
     display: flex;
-    gap: 5%;
+    gap: 3%;
     justify-content: center;
     z-index: 10;
 }
@@ -149,6 +149,10 @@ input[type="text"] {
     background: transparent;
     border: none;
     overflow: hidden;
+}
+
+#dayOnes {
+    left: -16%;
 }
 
 .reel-strip {
