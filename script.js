@@ -67,17 +67,25 @@ function initializeSlotMachine() {
     const reelStripTens = document.getElementById('reelStripTens');
     const reelStripOnes = document.getElementById('reelStripOnes');
 
-    // Create reel numbers (0-9 repeated for continuous effect)
+    // Create reel numbers (0-9 repeated for continuous effect) using images
     for (let i = 0; i < 4; i++) {
         for (let num = 0; num <= 9; num++) {
             const divTens = document.createElement('div');
             divTens.className = 'reel-number';
-            divTens.textContent = num;
+            const imgTens = document.createElement('img');
+            imgTens.src = `assets/num${num}.png`;
+            imgTens.alt = num;
+            imgTens.className = 'number-img';
+            divTens.appendChild(imgTens);
             reelStripTens.appendChild(divTens);
 
             const divOnes = document.createElement('div');
             divOnes.className = 'reel-number';
-            divOnes.textContent = num;
+            const imgOnes = document.createElement('img');
+            imgOnes.src = `assets/num${num}.png`;
+            imgOnes.alt = num;
+            imgOnes.className = 'number-img';
+            divOnes.appendChild(imgOnes);
             reelStripOnes.appendChild(divOnes);
         }
     }
