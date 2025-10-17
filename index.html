@@ -8,7 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <div class="container">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <h1>LOADING...</h1>
+            <div class="loading-bar-container">
+                <div class="loading-bar" id="loadingBar"></div>
+            </div>
+            <p class="loading-text" id="loadingText">Preparing assets... 0%</p>
+            <p class="loading-detail">Please wait while we load the slot machine</p>
+        </div>
+    </div>
+
+    <div class="container" id="mainContent" style="display: none;">
         <div class="box" id="formBox">
             <div class="center">
                 <h1>REGISTRATION FORM</h1>

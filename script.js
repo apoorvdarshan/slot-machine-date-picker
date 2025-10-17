@@ -1,3 +1,67 @@
+// Preload Assets
+const assetsToLoad = [
+    'assets/slot-machine.png',
+    'assets/num0.png',
+    'assets/num1.png',
+    'assets/num2.png',
+    'assets/num3.png',
+    'assets/num4.png',
+    'assets/num5.png',
+    'assets/num6.png',
+    'assets/num7.png',
+    'assets/num8.png',
+    'assets/num9.png'
+];
+
+let loadedAssets = 0;
+const totalAssets = assetsToLoad.length;
+
+function updateLoadingProgress() {
+    const percentage = Math.round((loadedAssets / totalAssets) * 100);
+    const loadingBar = document.getElementById('loadingBar');
+    const loadingText = document.getElementById('loadingText');
+
+    if (loadingBar) {
+        loadingBar.style.width = percentage + '%';
+    }
+    if (loadingText) {
+        loadingText.textContent = `Loading assets... ${percentage}%`;
+    }
+
+    if (loadedAssets === totalAssets) {
+        setTimeout(() => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const mainContent = document.getElementById('mainContent');
+            if (loadingScreen) {
+                loadingScreen.style.display = 'none';
+            }
+            if (mainContent) {
+                mainContent.style.display = 'block';
+            }
+        }, 500);
+    }
+}
+
+function preloadAssets() {
+    assetsToLoad.forEach(src => {
+        const img = new Image();
+        img.onload = () => {
+            loadedAssets++;
+            updateLoadingProgress();
+        };
+        img.onerror = () => {
+            loadedAssets++;
+            updateLoadingProgress();
+        };
+        img.src = src;
+    });
+}
+
+// Start preloading when page loads
+window.addEventListener('DOMContentLoaded', () => {
+    preloadAssets();
+});
+
 // Audio Context for retro sound effects
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
