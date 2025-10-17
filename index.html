@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER REGISTRATION TERMINAL v1.0</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="crt">
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="terminal-title">╔════════════════════════════════════════════════════════════╗</div>
+                <div class="terminal-title">║         USER REGISTRATION TERMINAL v1.0 - 1985           ║</div>
+                <div class="terminal-title">╚════════════════════════════════════════════════════════════╝</div>
+            </div>
+
+            <div class="boot-sequence" id="bootSequence">
+                <p>SYSTEM INITIALIZING...</p>
+                <p>LOADING REGISTRATION MODULE...</p>
+                <p>READY_</p>
+            </div>
+
+            <form id="registrationForm" class="hidden">
+                <div class="form-group">
+                    <label for="name">&gt; ENTER NAME:</label>
+                    <input type="text" id="name" name="name" required autocomplete="off">
+                    <span class="cursor">_</span>
+                </div>
+
+                <div class="form-group">
+                    <label>&gt; SELECT GENDER:</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="male" required>
+                            <span class="radio-custom">[•]</span> MALE
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="female" required>
+                            <span class="radio-custom">[ ]</span> FEMALE
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="other" required>
+                            <span class="radio-custom">[ ]</span> OTHER
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>&gt; DATE OF BIRTH:</label>
+                    <div class="slot-machine-container">
+                        <div class="date-display">
+                            <span id="displayDay">--</span> /
+                            <span id="displayMonth">--</span> /
+                            <span id="displayYear">----</span>
+                        </div>
+
+                        <div class="slots-wrapper">
+                            <div class="slot-group">
+                                <label class="slot-label">DAY:</label>
+                                <div class="slot-reels">
+                                    <div class="reel" id="dayTens">
+                                        <div class="reel-strip" id="reelStripTens"></div>
+                                        <div class="reel-window"></div>
+                                    </div>
+                                    <div class="reel" id="dayOnes">
+                                        <div class="reel-strip" id="reelStripOnes"></div>
+                                        <div class="reel-window"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slot-group">
+                                <label class="slot-label">MONTH:</label>
+                                <select id="month" name="month" required>
+                                    <option value="">--</option>
+                                    <option value="01">01-JAN</option>
+                                    <option value="02">02-FEB</option>
+                                    <option value="03">03-MAR</option>
+                                    <option value="04">04-APR</option>
+                                    <option value="05">05-MAY</option>
+                                    <option value="06">06-JUN</option>
+                                    <option value="07">07-JUL</option>
+                                    <option value="08">08-AUG</option>
+                                    <option value="09">09-SEP</option>
+                                    <option value="10">10-OCT</option>
+                                    <option value="11">11-NOV</option>
+                                    <option value="12">12-DEC</option>
+                                </select>
+                            </div>
+
+                            <div class="slot-group">
+                                <label class="slot-label">YEAR:</label>
+                                <select id="year" name="year" required>
+                                    <option value="">----</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="button" id="spinButton" class="spin-button">
+                            ╔═══════════╗<br>
+                            ║   SPIN!   ║<br>
+                            ╚═══════════╝
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    ╔═════════════════════════╗<br>
+                    ║   SUBMIT REGISTRATION   ║<br>
+                    ╚═════════════════════════╝
+                </button>
+            </form>
+
+            <div id="successMessage" class="hidden success-message">
+                <p>╔═══════════════════════════════════════════════════════════╗</p>
+                <p>║                  REGISTRATION SUCCESSFUL!                 ║</p>
+                <p>║                    DATA TRANSMITTED...                    ║</p>
+                <p>╚═══════════════════════════════════════════════════════════╝</p>
+            </div>
+        </div>
+        <div class="scanlines"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,466 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* CRT Screen Effect */
+.crt {
+    position: relative;
+    background: #000;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow:
+        0 0 100px rgba(0, 255, 0, 0.3),
+        inset 0 0 100px rgba(0, 255, 0, 0.05);
+    max-width: 900px;
+    width: 95%;
+    margin: 20px;
+}
+
+.crt::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+/* Terminal */
+.terminal {
+    position: relative;
+    background: #001a00;
+    border: 3px solid #00ff00;
+    border-radius: 8px;
+    padding: 30px;
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+    min-height: 500px;
+    animation: screen-flicker 0.15s infinite;
+}
+
+@keyframes screen-flicker {
+    0% { opacity: 0.97; }
+    50% { opacity: 1; }
+    100% { opacity: 0.97; }
+}
+
+/* Scanlines */
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(0, 0, 0, 0.3) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 10;
+    animation: scanline-move 10s linear infinite;
+}
+
+@keyframes scanline-move {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(4px); }
+}
+
+/* Terminal Header */
+.terminal-header {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.terminal-title {
+    letter-spacing: 1px;
+}
+
+/* Boot Sequence */
+.boot-sequence {
+    animation: fade-in 2s ease-in;
+}
+
+.boot-sequence p {
+    margin: 10px 0;
+    animation: blink-cursor 1s infinite;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes blink-cursor {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0.3; }
+}
+
+/* Form */
+.hidden {
+    display: none;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+input[type="text"] {
+    background: #000;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    font-size: 16px;
+    text-shadow: 0 0 5px #00ff00;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    box-shadow: 0 0 10px #00ff00;
+    animation: input-glow 1s infinite alternate;
+}
+
+@keyframes input-glow {
+    from { box-shadow: 0 0 5px #00ff00; }
+    to { box-shadow: 0 0 15px #00ff00; }
+}
+
+/* Radio Buttons */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.radio-label input[type="radio"] {
+    display: none;
+}
+
+.radio-custom {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.radio-label input[type="radio"]:checked + .radio-custom {
+    animation: radio-select 0.3s ease;
+}
+
+@keyframes radio-select {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Slot Machine */
+.slot-machine-container {
+    background: #000;
+    border: 2px solid #00ff00;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.date-display {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+    padding: 10px;
+    border: 1px solid #00ff00;
+    background: rgba(0, 255, 0, 0.05);
+}
+
+.slots-wrapper {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.slot-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 150px;
+}
+
+.slot-label {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.slot-reels {
+    display: flex;
+    gap: 5px;
+}
+
+.reel {
+    position: relative;
+    width: 50px;
+    height: 60px;
+    border: 2px solid #00ff00;
+    background: #000;
+    overflow: hidden;
+}
+
+.reel-window {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #00ff00;
+    transform: translateY(-50%);
+    box-shadow: 0 0 10px #00ff00;
+    z-index: 1;
+}
+
+.reel-strip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.1s linear;
+}
+
+.reel-number {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    text-shadow: 0 0 8px #00ff00;
+}
+
+select {
+    background: #000;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+    font-size: 14px;
+    text-shadow: 0 0 5px #00ff00;
+    outline: none;
+    cursor: pointer;
+    width: 120px;
+}
+
+select:focus {
+    box-shadow: 0 0 10px #00ff00;
+}
+
+select option {
+    background: #000;
+    color: #00ff00;
+}
+
+/* Spin Button */
+.spin-button {
+    background: #000;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    text-shadow: 0 0 5px #00ff00;
+    display: block;
+    margin: 0 auto;
+    transition: all 0.2s;
+    line-height: 1.4;
+    white-space: pre;
+}
+
+.spin-button:hover:not(:disabled) {
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 20px #00ff00;
+    transform: scale(1.05);
+}
+
+.spin-button:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.spin-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    animation: button-disabled 1s infinite;
+}
+
+@keyframes button-disabled {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.5; }
+}
+
+/* Submit Button */
+.submit-button {
+    background: #000;
+    border: 3px solid #00ff00;
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 20px 40px;
+    font-size: 18px;
+    cursor: pointer;
+    text-shadow: 0 0 5px #00ff00;
+    display: block;
+    margin: 40px auto 0;
+    transition: all 0.2s;
+    line-height: 1.4;
+    white-space: pre;
+}
+
+.submit-button:hover {
+    background: rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 30px #00ff00;
+    transform: scale(1.05);
+}
+
+.submit-button:active {
+    transform: scale(0.95);
+}
+
+/* Success Message */
+.success-message {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.6;
+    animation: success-blink 0.5s infinite alternate;
+}
+
+@keyframes success-blink {
+    from { opacity: 1; }
+    to { opacity: 0.7; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .crt {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .terminal {
+        padding: 20px;
+        min-height: auto;
+    }
+
+    .terminal-header {
+        font-size: 10px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    input[type="text"] {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .date-display {
+        font-size: 18px;
+    }
+
+    .slots-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .slot-group {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .reel {
+        width: 45px;
+        height: 55px;
+    }
+
+    .reel-number {
+        height: 55px;
+        font-size: 28px;
+    }
+
+    select {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .spin-button,
+    .submit-button {
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal-header {
+        font-size: 8px;
+    }
+
+    .terminal-title {
+        letter-spacing: 0;
+    }
+
+    label {
+        font-size: 12px;
+    }
+
+    .date-display {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+
+    .reel {
+        width: 40px;
+        height: 50px;
+    }
+
+    .reel-number {
+        height: 50px;
+        font-size: 24px;
+    }
+
+    .slot-label {
+        font-size: 12px;
+    }
+}
