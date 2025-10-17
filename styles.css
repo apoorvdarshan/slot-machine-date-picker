@@ -133,11 +133,11 @@ input[type="text"] {
 /* Slot Machine Reels */
 .slot-reels {
     position: absolute;
-    top: 53%;
-    left: 50%;
+    top: 44.5%;
+    left: 60%;
     transform: translate(-50%, -50%);
     display: flex;
-    gap: 15px;
+    gap: 5%;
     justify-content: center;
     z-index: 10;
 }
@@ -149,14 +149,6 @@ input[type="text"] {
     background: transparent;
     border: none;
     overflow: hidden;
-}
-
-#dayTens {
-    transform: translate(35px, -35px);
-}
-
-#dayOnes {
-    transform: translate(6px, -35px);
 }
 
 .reel-strip {
