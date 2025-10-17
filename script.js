@@ -36,21 +36,6 @@ function playSuccess() {
     setTimeout(() => playBeep(1000, 150), 200);
 }
 
-// Boot sequence
-window.addEventListener('load', () => {
-    const bootSequence = document.getElementById('bootSequence');
-    const form = document.getElementById('registrationForm');
-
-    playBeep(600, 100);
-
-    setTimeout(() => {
-        bootSequence.classList.add('hidden');
-        form.classList.remove('hidden');
-        playBeep(800, 100);
-        initializeSlotMachine();
-    }, 3000);
-});
-
 // Initialize year dropdown
 const yearSelect = document.getElementById('year');
 const currentYear = new Date().getFullYear();
@@ -61,20 +46,15 @@ for (let year = currentYear; year >= 1920; year--) {
     yearSelect.appendChild(option);
 }
 
+// Initialize slot machine on load
+window.addEventListener('load', () => {
+    initializeSlotMachine();
+});
+
 // Radio button interactions
 document.querySelectorAll('input[type="radio"]').forEach(radio => {
     radio.addEventListener('change', (e) => {
         playClick();
-        // Update radio button visuals
-        document.querySelectorAll('.radio-label').forEach(label => {
-            const radioInput = label.querySelector('input[type="radio"]');
-            const customRadio = label.querySelector('.radio-custom');
-            if (radioInput.checked) {
-                customRadio.textContent = '[•]';
-            } else {
-                customRadio.textContent = '[ ]';
-            }
-        });
     });
 });
 
@@ -141,9 +121,18 @@ function spinReel(reelStrip, finalValue, duration) {
     });
 }
 
+function getMonthNumber(monthName) {
+    const months = {
+        'January': 1, 'February': 2, 'March': 3, 'April': 4,
+        'May': 5, 'June': 6, 'July': 7, 'August': 8,
+        'September': 9, 'October': 10, 'November': 11, 'December': 12
+    };
+    return months[monthName] || 1;
+}
+
 function getValidDay(tens, ones, month) {
     const day = parseInt(`${tens}${ones}`);
-    const monthNum = parseInt(month) || 1;
+    const monthNum = getMonthNumber(month);
 
     // Days in each month (non-leap year)
     const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -235,11 +224,11 @@ document.getElementById('registrationForm').addEventListener('submit', (e) => {
     const name = document.getElementById('name').value;
     const gender = document.querySelector('input[name="gender"]:checked')?.value;
     const month = document.getElementById('month').value;
-    const year = document.getElementById('year').value;
-    const day = `${dayTensValue}${dayOnesValue}`.padStart(2, '0');
+    const year = parseInt(document.getElementById('year').value);
+    const day = parseInt(`${dayTensValue}${dayOnesValue}`);
 
     // Validate day was spun
-    if (day === '00') {
+    if (day === 0) {
         playBeep(200, 300);
         alert('ERROR: PLEASE SPIN FOR DAY VALUE');
         return;
@@ -254,35 +243,63 @@ document.getElementById('registrationForm').addEventListener('submit', (e) => {
 
     playSuccess();
 
-    const form = document.getElementById('registrationForm');
-    const successMessage = document.getElementById('successMessage');
+    // Calculate age and birth year difference
+    const birthDate = new Date(year, getMonthNumber(month) - 1, day);
+    const today = new Date();
+    const age = today.getFullYear() - year;
+    const yearDifference = year - today.getFullYear();
 
-    form.classList.add('hidden');
-    successMessage.classList.remove('hidden');
+    // Generate silly message
+    let message = '';
+    if (yearDifference > 0) {
+        // Future date
+        message = `You were born on ${month} ${day}, ${year}<br><br>You will be born in ${yearDifference} years! 🎂`;
+    } else if (age < 0) {
+        // Future date
+        message = `You were born on ${month} ${day}, ${year}<br><br>You will be born in ${Math.abs(age)} years! 🎂`;
+    } else if (age === 0) {
+        message = `You were born on ${month} ${day}, ${year}<br><br>Welcome to the world, newborn! 👶`;
+    } else if (age > 120) {
+        message = `You were born on ${month} ${day}, ${year}<br><br>You are ${age} years old!<br>Wow, you're ancient! 🦖`;
+    } else {
+        message = `You were born on ${month} ${day}, ${year}<br><br>You are ${age} years old!`;
+    }
+
+    // Show results
+    const formBox = document.getElementById('formBox');
+    const resultsBox = document.getElementById('resultsBox');
+    const resultsContent = document.getElementById('resultsContent');
+
+    resultsContent.innerHTML = `<p>${message}</p>`;
+
+    formBox.classList.add('hidden');
+    resultsBox.classList.remove('hidden');
 
     // Log registration data
     console.log('Registration Data:', {
         name,
         gender,
-        dateOfBirth: `${day}/${month}/${year}`
+        dateOfBirth: `${month} ${day}, ${year}`,
+        age: age
     });
+});
 
-    // Reset after 5 seconds
-    setTimeout(() => {
-        successMessage.classList.add('hidden');
-        form.classList.remove('hidden');
-        document.getElementById('registrationForm').reset();
-        document.getElementById('displayDay').textContent = '--';
-        document.getElementById('displayMonth').textContent = '--';
-        document.getElementById('displayYear').textContent = '----';
-        dayTensValue = 0;
-        dayOnesValue = 0;
+// Retry button functionality
+document.getElementById('retryButton').addEventListener('click', () => {
+    playClick();
 
-        // Reset radio buttons
-        document.querySelectorAll('.radio-custom').forEach(radio => {
-            radio.textContent = '[ ]';
-        });
-    }, 5000);
+    const formBox = document.getElementById('formBox');
+    const resultsBox = document.getElementById('resultsBox');
+
+    resultsBox.classList.add('hidden');
+    formBox.classList.remove('hidden');
+
+    document.getElementById('registrationForm').reset();
+    document.getElementById('displayDay').textContent = '--';
+    document.getElementById('displayMonth').textContent = '--';
+    document.getElementById('displayYear').textContent = '----';
+    dayTensValue = 0;
+    dayOnesValue = 0;
 });
 
 // Dropdown sound effects
