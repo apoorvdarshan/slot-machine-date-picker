@@ -241,9 +241,19 @@ button:disabled {
         font-size: 22px;
     }
 
+    .date-controls-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
     .date-inputs {
         flex-direction: column;
         align-items: center;
+        order: 1;
+    }
+
+    #spinButton {
+        order: 0;
     }
 
     .slot-machine-wrapper {

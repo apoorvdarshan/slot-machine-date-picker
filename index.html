@@ -44,50 +44,52 @@
                             <span id="displayMonth">--</span> <span id="displayDay">--</span>, <span id="displayYear">----</span>
                         </div>
 
-                        <div class="date-inputs">
-                            <div class="input-group slot-machine-group">
-                                <label>Day:</label>
-                                <div class="slot-machine-wrapper">
-                                    <img src="assets/slot-machine.png" alt="Slot Machine" class="slot-machine-bg">
-                                    <div class="slot-reels">
-                                        <div class="reel" id="dayTens">
-                                            <div class="reel-strip" id="reelStripTens"></div>
-                                        </div>
-                                        <div class="reel" id="dayOnes">
-                                            <div class="reel-strip" id="reelStripOnes"></div>
+                        <div class="date-controls-wrapper">
+                            <div class="date-inputs">
+                                <div class="input-group slot-machine-group">
+                                    <label>Day:</label>
+                                    <div class="slot-machine-wrapper">
+                                        <img src="assets/slot-machine.png" alt="Slot Machine" class="slot-machine-bg">
+                                        <div class="slot-reels">
+                                            <div class="reel" id="dayTens">
+                                                <div class="reel-strip" id="reelStripTens"></div>
+                                            </div>
+                                            <div class="reel" id="dayOnes">
+                                                <div class="reel-strip" id="reelStripOnes"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="input-group">
+                                    <label>Month:</label>
+                                    <select id="month" name="month" required>
+                                        <option value="">--</option>
+                                        <option value="January">January</option>
+                                        <option value="February">February</option>
+                                        <option value="March">March</option>
+                                        <option value="April">April</option>
+                                        <option value="May">May</option>
+                                        <option value="June">June</option>
+                                        <option value="July">July</option>
+                                        <option value="August">August</option>
+                                        <option value="September">September</option>
+                                        <option value="October">October</option>
+                                        <option value="November">November</option>
+                                        <option value="December">December</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Year:</label>
+                                    <select id="year" name="year" required>
+                                        <option value="">----</option>
+                                    </select>
+                                </div>
                             </div>
 
-                            <div class="input-group">
-                                <label>Month:</label>
-                                <select id="month" name="month" required>
-                                    <option value="">--</option>
-                                    <option value="January">January</option>
-                                    <option value="February">February</option>
-                                    <option value="March">March</option>
-                                    <option value="April">April</option>
-                                    <option value="May">May</option>
-                                    <option value="June">June</option>
-                                    <option value="July">July</option>
-                                    <option value="August">August</option>
-                                    <option value="September">September</option>
-                                    <option value="October">October</option>
-                                    <option value="November">November</option>
-                                    <option value="December">December</option>
-                                </select>
-                            </div>
-
-                            <div class="input-group">
-                                <label>Year:</label>
-                                <select id="year" name="year" required>
-                                    <option value="">----</option>
-                                </select>
-                            </div>
+                            <button type="button" id="spinButton">spin</button>
                         </div>
-
-                        <button type="button" id="spinButton">spin</button>
                     </div>
                 </div>
 
