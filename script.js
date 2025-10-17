@@ -94,7 +94,11 @@ function initializeSlotMachine() {
 function spinReel(reelStrip, finalValue, duration) {
     return new Promise((resolve) => {
         const startTime = Date.now();
-        const numberHeight = 75;
+
+        // Get actual height dynamically based on screen size
+        const firstNumber = reelStrip.querySelector('.reel-number');
+        const numberHeight = firstNumber ? firstNumber.offsetHeight : 75;
+
         const numbersPerCycle = 10; // 0-9
         const totalStripHeight = numberHeight * numbersPerCycle;
 
