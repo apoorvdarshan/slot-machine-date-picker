@@ -8,7 +8,7 @@ A retro 90s-style registration form featuring a unique slot machine interface fo
 
 ## 🎰 Live Demo
 
-**[View Live Demo](https://apoorvdarshan.github.io/slot-machine-date-picker/)**
+**[View Live Demo](https://slot-machine-date-picker.aopv.dev)**
 
 ## Features
 
@@ -37,7 +37,7 @@ A retro 90s-style registration form featuring a unique slot machine interface fo
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/apoorvdarshan/slot-machine-date-picker.git
+git clone https://github.com/aopv/slot-machine-date-picker.git
 ```
 
 2. Navigate to the project directory:
@@ -61,8 +61,8 @@ This project is open source and available for anyone to use.
 
 ### Made with ❤️ by Apoorv Darshan
 
-[![Website](https://img.shields.io/badge/Website-00C7B7?style=for-the-badge&logo=google-chrome&logoColor=white)](https://apoorvdarshan.com)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/apoorvdarshan)
+[![Website](https://img.shields.io/badge/Website-00C7B7?style=for-the-badge&logo=google-chrome&logoColor=white)](https://aopv.dev)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/aopv)
 [![X](https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/apoorvdarshan)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/apoorvdarshan)
 [![Gmail](https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ad13dtu@gmail.com)
